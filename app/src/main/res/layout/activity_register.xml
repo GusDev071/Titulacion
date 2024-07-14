@@ -28,6 +28,7 @@
             android:fontFamily="@font/poppinsmedium"
             android:text="Completa los datos" />
         <EditText
+            android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Nombre"
@@ -39,6 +40,7 @@
             android:fontFamily="@font/poppinsmedium"
             android:inputType="text"/>
         <EditText
+            android:id="@+id/etApellidos"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Apellidos"
@@ -50,6 +52,7 @@
             android:fontFamily="@font/poppinsmedium"
             android:inputType="text"/>
         <EditText
+            android:id="@+id/etCorreo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Correo electronico"
@@ -61,6 +64,7 @@
             android:fontFamily="@font/poppinsmedium"
             android:inputType="textEmailAddress"/>
         <EditText
+            android:id="@+id/etTelefono"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Telefono"
@@ -72,6 +76,7 @@
             android:fontFamily="@font/poppinsmedium"
             android:inputType="phone"/>
         <EditText
+            android:id="@+id/etContrasena"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Contraseña"
@@ -83,6 +88,7 @@
             android:fontFamily="@font/poppinsmedium"
             android:inputType="textPassword"/>
         <EditText
+            android:id="@+id/etConfirmarContrasena"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Confirmar contraseña"
@@ -104,6 +110,7 @@
         app:layout_anchorGravity="top|center">
 
         <Button
+            android:id="@+id/btnRegistrarse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
