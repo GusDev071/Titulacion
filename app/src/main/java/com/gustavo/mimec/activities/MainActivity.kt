@@ -11,12 +11,18 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.gustavo.mimec.R
+import com.gustavo.mimec.models.ResponseHttp
+import com.gustavo.mimec.providers.UsersProvider
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 private lateinit var txtRegistro: TextView
-private lateinit var etCorreo: EditText
-private lateinit var etContrasena: EditText
-private lateinit var btnIniciarSesion: Button
+var etCorreo: EditText? =null
+var etContrasena: EditText? = null
+var btnIniciarSesion: Button? = null
+var usersProvider = UsersProvider()
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,15 +35,36 @@ class MainActivity : AppCompatActivity() {
         btnIniciarSesion = findViewById(R.id.btnLogin)
 
         txtRegistro.setOnClickListener {Registro()}
-        btnIniciarSesion.setOnClickListener {Login()}
+        btnIniciarSesion?.setOnClickListener {Login()}
     }
 
     private fun Login(){
-        val correo = etCorreo.text.toString()
-        val contrasena = etContrasena.text.toString()
+        val correo = etCorreo?.text.toString()
+        val contrasena = etContrasena?.text.toString()
 
         if(validarLogin(correo, contrasena)){
-            Toast.makeText(this, "Datos correctos", Toast.LENGTH_SHORT).show()
+
+            usersProvider.login(correo, contrasena)?.enqueue(object: Callback<ResponseHttp>{
+                override fun onResponse(
+                    call: Call<ResponseHttp>,
+                    response: Response<ResponseHttp>
+                ) {
+                    Log.d("MainActivity", "Response: ${response.body()}")
+
+                    if (response.body()?.isSuccess == true){
+                        Toast.makeText(this@MainActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Toast.makeText(this@MainActivity, "Datos incorrectos", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseHttp>, t: Throwable) {
+                    Log.d("MainActivity", "Hubo un error ${t.message}")
+                    Toast.makeText(this@MainActivity, "Hubo un error ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+
+            })
         }
         else{
             Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show()
@@ -45,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
 
         Log.d("MainActivity", "Correo: $correo")
-        Log.d("MainActivity", "Contraseña: $contrasena")
+      //  Log.d("MainActivity", "Contraseña: $contrasena")
     }
 
     fun String.CorreoValido():Boolean{
