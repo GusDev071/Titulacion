@@ -10,9 +10,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
 import com.gustavo.mimec.R
+import com.gustavo.mimec.activities.client.home.ClientHomeActivity
 import com.gustavo.mimec.models.ResponseHttp
+import com.gustavo.mimec.models.User
 import com.gustavo.mimec.providers.UsersProvider
+import com.gustavo.mimec.utils.SharedPref
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         txtRegistro.setOnClickListener {Registro()}
         btnIniciarSesion?.setOnClickListener {Login()}
+        getUserUserFromSession()
     }
 
     private fun Login(){
@@ -53,6 +58,9 @@ class MainActivity : AppCompatActivity() {
 
                     if (response.body()?.isSuccess == true){
                         Toast.makeText(this@MainActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
+
+                        saveUserInSession(response.body()?.data.toString())
+                        goToClientHome()
                     }
                     else{
                         Toast.makeText(this@MainActivity, "Datos incorrectos", Toast.LENGTH_SHORT).show()
@@ -75,8 +83,33 @@ class MainActivity : AppCompatActivity() {
       //  Log.d("MainActivity", "Contraseña: $contrasena")
     }
 
+    private fun goToClientHome(){
+        val home = Intent(this, ClientHomeActivity::class.java)
+        startActivity(home)
+        finish()
+    }
+
+    private fun saveUserInSession(data:String){
+        val sharedPref = SharedPref(this)
+        val gson = Gson()
+        val user = gson.fromJson(data, User::class.java)
+        sharedPref.save("user", user)
+
+    }
+
     fun String.CorreoValido():Boolean{
         return !TextUtils.isEmpty(this) && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    }
+
+    private fun getUserUserFromSession(){
+
+        val sharedPref = SharedPref(this)
+        val gson = Gson()
+
+        if (!sharedPref.getData("user").isNullOrBlank()){
+            val user = gson.fromJson(sharedPref.getData("user"), User::class.java)
+            goToClientHome()
+        }
     }
 
     private fun validarLogin(correo:String, contraseña:String):Boolean {
