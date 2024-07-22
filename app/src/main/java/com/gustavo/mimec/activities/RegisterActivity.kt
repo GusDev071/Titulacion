@@ -14,9 +14,12 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.gson.Gson
+import com.gustavo.mimec.activities.client.home.ClientHomeActivity
 import com.gustavo.mimec.models.ResponseHttp
 import com.gustavo.mimec.models.User
 import com.gustavo.mimec.providers.UsersProvider
+import com.gustavo.mimec.utils.SharedPref
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,7 +67,7 @@ class RegisterActivity : AppCompatActivity() {
 
             val user = User(
                 name = nombre,
-                latsname = apellidos,
+                lastname = apellidos,
                 email = correo,
                 phone = telefono,
                 password = contrasena
@@ -75,6 +78,12 @@ class RegisterActivity : AppCompatActivity() {
                     call: Call<ResponseHttp>,
                     response: Response<ResponseHttp>
                 ) {
+
+                    if(response.body()?.isSuccess == true){
+                        saveUserInSession(response.body()?.data.toString())
+                        goToClientHome()
+                    }
+
                     Toast.makeText(this@RegisterActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
 
                     Log.d(TAG, "Response: ${response}")
@@ -88,6 +97,20 @@ class RegisterActivity : AppCompatActivity() {
 
             })
         }
+
+    }
+
+    private fun goToClientHome(){
+        val home = Intent(this, ClientHomeActivity::class.java)
+        startActivity(home)
+        finish()
+    }
+
+    private fun saveUserInSession(data:String){
+        val sharedPref = SharedPref(this)
+        val gson = Gson()
+        val user = gson.fromJson(data, User::class.java)
+        sharedPref.save("user", user)
 
     }
 

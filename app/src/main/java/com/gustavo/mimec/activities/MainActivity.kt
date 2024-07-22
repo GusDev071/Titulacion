@@ -2,6 +2,8 @@ package com.gustavo.mimec.activities
 
 import android.os.Bundle
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
@@ -13,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.gustavo.mimec.R
 import com.gustavo.mimec.activities.client.home.ClientHomeActivity
+import com.gustavo.mimec.activities.delivery.home.DeliveryHomeActivity
+import com.gustavo.mimec.activities.taller.home.TallerHomeActivity
 import com.gustavo.mimec.models.ResponseHttp
 import com.gustavo.mimec.models.User
 import com.gustavo.mimec.providers.UsersProvider
@@ -60,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
 
                         saveUserInSession(response.body()?.data.toString())
-                        goToClientHome()
+
                     }
                     else{
                         Toast.makeText(this@MainActivity, "Datos incorrectos", Toast.LENGTH_SHORT).show()
@@ -84,9 +88,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToClientHome(){
-        val home = Intent(this, ClientHomeActivity::class.java)
-        startActivity(home)
-        finish()
+        val i = Intent(this, ClientHomeActivity::class.java)
+        i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(i)
+    }
+
+    private fun goToTallerHome(){
+        val i = Intent(this, TallerHomeActivity::class.java)
+        i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(i)
+    }
+
+    private fun goToMecanicoHome(){
+        val i = Intent(this, DeliveryHomeActivity::class.java)
+        i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(i)
+    }
+
+    private fun goToSelectRol(){
+        val i = Intent(this, SelectRolesActivity::class.java)
+        i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(i)
     }
 
     private fun saveUserInSession(data:String){
@@ -94,6 +116,13 @@ class MainActivity : AppCompatActivity() {
         val gson = Gson()
         val user = gson.fromJson(data, User::class.java)
         sharedPref.save("user", user)
+
+        if(user.roles?.size!! > 1){// tiene mas de un rol
+            goToSelectRol()
+        }
+        else{// solo tiene un rol
+            goToClientHome()
+        }
 
     }
 
@@ -108,7 +137,23 @@ class MainActivity : AppCompatActivity() {
 
         if (!sharedPref.getData("user").isNullOrBlank()){
             val user = gson.fromJson(sharedPref.getData("user"), User::class.java)
-            goToClientHome()
+
+            if(!sharedPref.getData("rol").isNullOrBlank()){
+                val rol = sharedPref.getData("rol")?.replace("\"", "")
+
+                if(rol == "CLIENTE"){
+                    goToClientHome()
+                }
+                else if(rol == "TALLER"){
+                    goToTallerHome()
+                }
+                else if(rol == "MECANICO"){
+                    goToMecanicoHome()
+                }
+            }
+            else{
+                goToClientHome()
+            }
         }
     }
 

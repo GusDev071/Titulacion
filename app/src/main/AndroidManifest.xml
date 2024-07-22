@@ -17,6 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.delivery.home.DeliveryHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.taller.home.TallerHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SelectRolesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.client.home.ClientHomeActivity"
             android:exported="false" />
         <activity
