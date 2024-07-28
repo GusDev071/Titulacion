@@ -9,6 +9,8 @@ import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
 import com.gustavo.mimec.R
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
@@ -101,9 +103,9 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun goToClientHome(){
-        val home = Intent(this, ClientHomeActivity::class.java)
+        val home = Intent(this, SaveImageActivity::class.java)
+        home.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
         startActivity(home)
-        finish()
     }
 
     private fun saveUserInSession(data:String){
