@@ -16,7 +16,7 @@ class User(
     @SerializedName("roles") val roles: ArrayList<Rol>? = null
 ){
     override fun toString(): String {
-        return "User(id=$id, name='$name', lastname='$lastname', email='$email', phone='$phone', password='$password', image=$image, SessionToken=$SessionToken, isAvailable=$isAvailable, roles=$roles)"
+        return "User(id=$id, name='$name', lastname='$lastname', email='$email', phone='$phone', password='$password', image='$image', SessionToken=$SessionToken, isAvailable=$isAvailable, roles=$roles)"
     }
 
     fun toJson(): String {

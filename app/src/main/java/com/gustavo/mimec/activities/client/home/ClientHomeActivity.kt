@@ -70,12 +70,6 @@ class ClientHomeActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    private fun logout(){
-        sharedPref?.remove("user")
-        val i = Intent (this, MainActivity::class.java)
-        startActivity(i)
-        finish()
-    }
 
     private fun getUserUserFromSession(){
         val gson = Gson()

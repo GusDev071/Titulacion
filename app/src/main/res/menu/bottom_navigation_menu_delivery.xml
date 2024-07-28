@@ -4,11 +4,13 @@
     <item
         android:id="@+id/item_orders"
         android:icon="@drawable/ic_orders"
-        android:title="Mis servicios" />
+        android:title="Mis servicios"
+        android:fontFamily="@font/poppinsmedium"/>
 
     <item
         android:id="@+id/item_profile"
         android:icon="@drawable/ic_person_pin"
-        android:title="Perfil" />
+        android:title="Perfil"
+        android:fontFamily="@font/poppinsmedium"/>
 
 </menu>

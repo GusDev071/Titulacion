@@ -4,17 +4,20 @@
     <item
         android:id="@+id/item_home"
         android:icon="@drawable/ic_orders"
-        android:title="Inicio" />
+        android:title="Inicio"
+        android:fontFamily="@font/poppinsmedium"/>
 
     <item
         android:id="@+id/item_category"
         android:icon="@drawable/ic_category"
-        android:title="Mis categorias" />
+        android:title="Mis categorias"
+        android:fontFamily="@font/poppinsmedium"/>
 
     <item
         android:id="@+id/item_products"
         android:icon="@drawable/ic_llave"
-        android:title="Servicios y mantenimiento" />
+        android:title="Servicios y mantenimiento"
+        android:fontFamily="@font/poppinsmedium"/>
 
     <item
         android:id="@+id/item_profile"
