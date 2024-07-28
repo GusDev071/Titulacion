@@ -17,6 +17,7 @@ import com.google.gson.Gson
 import com.gustavo.mimec.R
 import com.gustavo.mimec.activities.MainActivity
 import com.gustavo.mimec.activities.SelectRolesActivity
+import com.gustavo.mimec.activities.client.update.ClientUpdateActivity
 import com.gustavo.mimec.models.User
 import com.gustavo.mimec.utils.SharedPref
 import de.hdodenhof.circleimageview.CircleImageView
@@ -51,6 +52,7 @@ class ClientProfileFragment : Fragment() {
         imageViewLogout = myView?.findViewById(R.id.btnLogout)
 
         buttonSelectRol?.setOnClickListener{goToSelectRol()}
+        buttonUpdateProfile?.setOnClickListener{goToUpdate()}
         imageViewLogout?.setOnClickListener{logout()}
 
         getUserUserFromSession()
@@ -79,6 +81,11 @@ class ClientProfileFragment : Fragment() {
     private fun goToSelectRol(){
         val i = Intent(requireContext(), SelectRolesActivity::class.java)
         i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(i)
+    }
+
+    private fun goToUpdate(){
+        val i = Intent(requireContext(), ClientUpdateActivity::class.java)
         startActivity(i)
     }
 

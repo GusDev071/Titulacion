@@ -38,7 +38,7 @@ class SaveImageActivity : AppCompatActivity() {
 
     private  var imageFile: File? = null
 
-    var usersProvider = UsersProvider()
+    var usersProvider: UsersProvider? = null
     var user: User? = null
     var sharedPref: SharedPref? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +49,8 @@ class SaveImageActivity : AppCompatActivity() {
         sharedPref = SharedPref(this)
 
         getUserUserFromSession()
+
+        usersProvider = UsersProvider(user?.SessionToken)
 
         circleImageUser = findViewById(R.id.circleImageUser)
         buttonNext = findViewById(R.id.btnNext)
@@ -62,7 +64,7 @@ class SaveImageActivity : AppCompatActivity() {
 
     private fun saveImage(){
         if(imageFile != null && user != null){
-            usersProvider.update(imageFile!! , user!!)?.enqueue(object : Callback<ResponseHttp>{
+            usersProvider?.update(imageFile!! , user!!)?.enqueue(object : Callback<ResponseHttp>{
                 override fun onResponse(call: Call<ResponseHttp>, response: Response<ResponseHttp>) {
                     Log.e(TAG, "Response: $response")
                     Log.e(TAG, "BODY: ${response.body()}")

@@ -1,5 +1,6 @@
 package com.gustavo.mimec.api
 
+import com.gustavo.mimec.routes.CategoriesRoutes
 import com.gustavo.mimec.routes.UsersRoutes
 import retrofit2.Retrofit
 
@@ -10,6 +11,14 @@ class ApiRoutes {
 
     fun getUsersRoutes(): UsersRoutes{
         return retrofit.getClient(API_URL).create(UsersRoutes::class.java)
+    }
+
+    fun getUsersRoutesWithToken(token: String): UsersRoutes{
+        return retrofit.getClientToken(API_URL, token).create(UsersRoutes::class.java)
+    }
+
+    fun getCategoriesRoutes(token: String): CategoriesRoutes{
+        return retrofit.getClientToken(API_URL, token).create(CategoriesRoutes::class.java)
     }
 
 }

@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MIMEC" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/transparent</item>
+         <item name="colorPrimary">@color/blue2</item>
     </style>
 
     <style name="Theme.MIMEC" parent="Base.Theme.MIMEC" />
