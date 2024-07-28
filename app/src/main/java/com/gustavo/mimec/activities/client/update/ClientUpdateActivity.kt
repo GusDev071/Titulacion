@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
@@ -42,12 +44,20 @@ class ClientUpdateActivity : AppCompatActivity() {
     var usersProvider: UsersProvider? = null
     val TAG = "ClientUpdateActivity"
 
+    var toolbar: Toolbar? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_client_update)
 
         sharedPref = SharedPref(this)
+
+        toolbar = findViewById(R.id.toolbar)
+        toolbar?.title = "Actualizar datos"
+        toolbar?.setTitleTextColor(ContextCompat.getColor(this, R.color.black))
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         circleImageUser = findViewById(R.id.circleimage_user)
         etNombre = findViewById(R.id.etNombre)
