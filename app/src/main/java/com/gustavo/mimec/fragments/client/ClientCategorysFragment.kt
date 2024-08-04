@@ -1,9 +1,13 @@
 package com.gustavo.mimec.fragments.client
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -14,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.gustavo.mimec.R
+import com.gustavo.mimec.activities.client.shopping_cart.ClientShoppingCartActivity
 import com.gustavo.mimec.adapters.CategoriesAdapter
 import com.gustavo.mimec.models.Category
 import com.gustavo.mimec.models.User
@@ -43,6 +48,8 @@ class ClientCategorysFragment : Fragment() {
         // Inflate the layout for this fragment
         myView = inflater.inflate(R.layout.fragment_client_categorys, container, false)
 
+        setHasOptionsMenu(true)
+
         toolbar = myView?.findViewById(R.id.toolbar)
         toolbar?.setTitleTextColor(ContextCompat.getColor(requireContext(), R.color.black))
         toolbar?.title = "Servicios disponibles"
@@ -59,6 +66,25 @@ class ClientCategorysFragment : Fragment() {
         getCategories()
 
         return myView
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_shopping_cart, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.item_shpping_cart){
+            goToShoppingCart()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun goToShoppingCart(){
+        val i = Intent(requireContext(), ClientShoppingCartActivity::class.java)
+        startActivity(i)
     }
 
     private fun getCategories(){

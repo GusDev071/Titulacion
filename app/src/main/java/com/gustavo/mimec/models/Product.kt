@@ -12,7 +12,7 @@ class Product(
     @SerializedName("image2") val image2: String? = null,
     @SerializedName("image3") val image3: String? = null,
     @SerializedName("id_category") val idCategory: String,
-    @SerializedName("quantity") val quantity: String? = null,
+    @SerializedName("quantity") var quantity: Int? = null,
 
 ) {
 

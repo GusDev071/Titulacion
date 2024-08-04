@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.gustavo.mimec.R
 import com.gustavo.mimec.activities.client.home.ClientHomeActivity
 import com.gustavo.mimec.activities.client.products.detail.ClientProductsDetailActivity
@@ -44,6 +45,7 @@ class ProductsAdapter(val context: Activity, val products : ArrayList<Product>):
 
     private fun goToDetail(product: Product){
             val i=Intent(context, ClientProductsDetailActivity::class.java)
+            i.putExtra("product", product.toJson())
             context.startActivity(i)
     }
 
