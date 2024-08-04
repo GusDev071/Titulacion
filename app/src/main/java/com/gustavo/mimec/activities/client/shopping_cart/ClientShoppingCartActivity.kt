@@ -1,5 +1,6 @@
 package com.gustavo.mimec.activities.client.shopping_cart
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.gustavo.mimec.R
+import com.gustavo.mimec.activities.client.address.create.ClientAddressCreateActivity
+import com.gustavo.mimec.activities.client.address.list.ClientAddressListActivity
 import com.gustavo.mimec.adapters.ShppingCartAdapter
 import com.gustavo.mimec.models.Product
 import com.gustavo.mimec.utils.SharedPref
@@ -51,6 +54,13 @@ class ClientShoppingCartActivity : AppCompatActivity() {
 
         getProductsFromSharedPref()
 
+        btnNext?.setOnClickListener{goToCreateList()}
+
+    }
+
+    private fun goToCreateList() {
+        val i = Intent(this, ClientAddressListActivity::class.java)
+        startActivity(i)
     }
 
     fun setTotal(total: Double){

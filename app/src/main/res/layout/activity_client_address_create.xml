@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.client.address.create.ClientAddressCreateActivity">
+
+    <include layout="@layout/action_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp">
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Completa estos datos"
+            android:textSize="17sp"
+            android:fontFamily="@font/poppinsbold"
+            android:textColor="@color/black"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"/>
+
+        <EditText
+            android:id="@+id/editTAdress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Dirección"
+            android:background="@drawable/editext_custom"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="12dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/etNeighborhood"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Barrio"
+            android:background="@drawable/editext_custom"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="12dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/etRefPoint"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Punto de referencia"
+            android:background="@drawable/editext_custom"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="12dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:inputType="text"
+            android:focusable="false"
+            android:clickable="true"
+            android:cursorVisible="false"/>
+
+        
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Crear dirección"
+        android:backgroundTint="@color/blue_dark"
+        android:fontFamily="@font/poppinsmedium"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -34,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -51,6 +54,13 @@ dependencies {
     implementation ("com.github.dhaval2404:imagepicker:2.1")
     implementation ("com.github.d-max:spots-dialog:1.1@aar")
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    implementation ("com.google.maps.android:maps-ktx:3.2.0")
+    implementation ("com.google.maps.android:maps-utils-ktx:3.2.0")
+    implementation ("com.google.android.gms:play-services-maps:17.0.1")
+    implementation ("com.google.android.gms:play-services-location:18.0.0")
+    implementation ("com.google.maps.android:android-maps-utils:2.2.3")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
