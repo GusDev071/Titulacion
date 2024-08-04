@@ -49,6 +49,8 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.github.dhaval2404:imagepicker:2.1")
+    implementation ("com.github.d-max:spots-dialog:1.1@aar")
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

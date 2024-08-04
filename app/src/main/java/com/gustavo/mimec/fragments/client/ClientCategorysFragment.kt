@@ -29,11 +29,11 @@ class ClientCategorysFragment : Fragment() {
     var TAG = "ClientCategorysFragment"
     var myView: View? = null
     var recyclerViewCategories: RecyclerView? = null
-    var categoriesProvider: CategoriesProvider? = null
     var adapter: CategoriesAdapter? = null
     var user: User? = null
     var sharedPref: SharedPref? = null
     var categories = ArrayList<Category>()
+    var categoriesProvider: CategoriesProvider? = null
     var toolbar: Toolbar? = null
 
     override fun onCreateView(

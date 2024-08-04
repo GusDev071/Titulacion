@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.taller.TallerProductFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="FRAGMENT TALLER PRODUCTS" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       >
+       <EditText
+           android:id="@+id/etProduct"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:hint="Nombre del producto"
+           android:background="@drawable/editext_custom"
+           android:layout_marginTop="50dp"
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
+           android:padding="12dp"
+           android:fontFamily="@font/poppinsmedium"
+           android:inputType="text"/>
 
-</FrameLayout>
+       <EditText
+           android:id="@+id/etDescription"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:hint="Descripción del producto"
+           android:background="@drawable/editext_custom"
+           android:layout_marginTop="10dp"
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
+           android:padding="12dp"
+           android:fontFamily="@font/poppinsmedium"
+           android:inputType="textMultiLine"/>
+
+       <EditText
+           android:id="@+id/etPrice"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:hint="Precio del prducto"
+           android:background="@drawable/editext_custom"
+           android:layout_marginTop="10dp"
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
+           android:padding="12dp"
+           android:fontFamily="@font/poppinsmedium"
+           android:inputType="phone"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:gravity="center_horizontal"
+           android:layout_marginTop="20dp">
+           
+           <ImageView
+               android:id="@+id/ivImage1"
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:src="@drawable/ic_image"
+               android:background="@color/gray_light"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               />
+           <ImageView
+               android:id="@+id/ivImage2"
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:src="@drawable/ic_image"
+               android:background="@color/gray_light"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"/>
+           <ImageView
+               android:id="@+id/ivImage3"
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:src="@drawable/ic_image"
+               android:background="@color/gray_light"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               />
+
+       </LinearLayout>
+
+       <Spinner
+           android:id="@+id/spCategory"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="20dp"/>
+   </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCrearProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="Crear producto"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/blue2"
+        android:fontFamily="@font/poppinsmedium"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="100dp"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

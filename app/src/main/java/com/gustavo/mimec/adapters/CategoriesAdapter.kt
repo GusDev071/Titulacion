@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gustavo.mimec.R
 import com.gustavo.mimec.activities.client.home.ClientHomeActivity
+import com.gustavo.mimec.activities.client.products.list.ClientProductsListActivity
 import com.gustavo.mimec.activities.delivery.home.DeliveryHomeActivity
 import com.gustavo.mimec.activities.taller.home.TallerHomeActivity
 import com.gustavo.mimec.models.Category
@@ -36,13 +37,14 @@ class CategoriesAdapter(val context: Activity, val categories : ArrayList<Catego
         Glide.with(context).load(category.image).into(holder.imageViewCategory)
 
 
-        /*holder.itemView.setOnClickListener {goToRol(rol)}*/
+        holder.itemView.setOnClickListener {goToProducts(category)}
     }
 
-    /*private fun goToRol(rol:Rol){
-            val i=Intent(context, TallerHomeActivity::class.java)
+    private fun goToProducts(category: Category){
+            val i=Intent(context, ClientProductsListActivity::class.java)
+            i.putExtra("idCategory", category.id)
             context.startActivity(i)
-    }*/
+    }
 
     class CategoriesViewHolder(view: View): RecyclerView.ViewHolder(view){
 
